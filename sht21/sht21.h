@@ -1,0 +1,13 @@
+#ifndef SHT21_DRIVER_H
+#define SHT21_DRIVER_H
+
+enum
+{
+	SHT21_I2CSLAVEADDR = 0x40,
+	SHT21_TEMP = 0xF3,
+	SHT21_HUMID = 0xF5,
+	SHT21_WAIT = 90,
+};
+
+
+#endif  
