@@ -1,0 +1,63 @@
+
+
+
+/*
+ *@author:Mohammad Jamal Mohiuddin <mjmohiuddin@cdac.in>
+ */
+
+
+---> It is a 128K*8(1024K Bit) Serial EEPROM,
+Address Range: 00000 --- 1FFFF
+B0=0	->	00000	---->	0FFFF
+B0=1 	->	10000	---->	1FFFF
+
+---> The device supports both page write upto 128 bytes at a time and byte write
+
+---> Device capable of  both random and sequential reads
+
+---> A0,A1 inputs are used by the EEPROM for multiple device operations.Up to four devices may be connected to the same bus by using different chip select bit combinations.
+
+---> I2C: MSP430(Master),EEPROM(Slave)
+
+---> Control Byte is the first byte received following the start condition.It consists of a 4-bit Control code(1010) .The next bit is the Block Select Bit(B0),
+This bit acts as the A16 address bit for accessing the entire array.Then A0,A1.Then last bit will contain whether it is write(0) or read(1)
+
+---> The next two bytes received define the address of the first data byte.The upper address bits are transferred first,followed by the Less significant bits.
+
+
+---> The device has an internal addressing boundary limitation that is divided into two segments of 512k Bits.Block select Bit(B0) to control access each segment.
+
+---> Control Byte + Address High Byte + Address Low Byte
+
+---> Byte Write:
+
+	---> Control Byte + Higher Order Byte of the Word Address + Lower Order Byte of the Word Address + Data Transmission
+
+
+---> Page Write:
+
+	---> Control Byte + Higher Order Byte of the Word Address + Lower Order Byte of the Word Address + Data Byte 
+
+	But instead of generating a stop Condition ,the master transmits up to 127 additional 
+
+
+
+
+
+
+
+
+
+---> Read Operation :
+
+	R/W bit of the control byte is set to One.There are three basic types:Current read,random read and sequential read.	
+
+
+Random Read: Start + Control Byte(W) + Higher 8 bit of Word Address + Lower 8 bit of Word Address + Start + Control Byte(R) + Read 1 Byte + Stop
+
+
+
+	
+
+
+
